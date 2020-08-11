@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300sp"
+    android:layout_height="match_parent"
+    android:background="#7A58AAE8"
+    android:orientation="vertical"
+    android:id="@+id/drawerView"
+    android:layout_gravity="start"
+    >
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="윤수혁님"
+        android:textSize="24sp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="50sp"
+        android:layout_gravity="center"
+        />
+    <ImageView
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:layout_gravity="center"
+        android:src="@drawable/login"
+        android:layout_margin="30sp"
+        />
+    <TextView
+        android:id="@+id/introMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:text="환영합니다."
+        android:layout_gravity="center"
+        />
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="로그아웃"
+        android:layout_marginTop="70sp"
+        android:background="@drawable/round_value_gray"
+
+        />
+
+
+</LinearLayout>

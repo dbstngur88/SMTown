@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin, btnFindPW, btnRegister;
     String strEmail, strPW;
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     Intent intent;
 
     @Override
@@ -58,6 +59,10 @@ public class LoginActivity extends AppCompatActivity {
         String getResetData = intent.getStringExtra("resetPW");
         if(getResetData != null){
             Toast.makeText(LoginActivity.this, "비밀번호 재설정 이메일 전송을 완료했습니다.", Toast.LENGTH_SHORT).show();
+        }
+        getResetData = intent.getStringExtra("logout");
+        if(getResetData != null){
+            Toast.makeText(LoginActivity.this, "로그아웃 성공", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -109,5 +114,17 @@ public class LoginActivity extends AppCompatActivity {
                 break;
         }
     }
-
+    //로그아웃 안했으면, 즉 로그인 되어있으면 자동으로 메인페이지로 이동시키기
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+        }
+    }
 }
