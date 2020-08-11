@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:orientation="vertical"
+    android:background="#4F71E9F4"
+    android:padding="20sp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="회 원 가 입"
+        android:layout_margin="20sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="48sp"
+        />
+
+    <ImageView
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:background="@drawable/login"
+        android:layout_gravity="center"
+        android:layout_margin="30sp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/email"
+            android:hint="Email"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/password"
+        android:hint="Password"
+        android:inputType="textPassword"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10sp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0sp"
+            android:layout_weight="11"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:id="@+id/checkPW"
+                android:inputType="textPassword"
+                android:hint="Password 재입력"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:layout_width="0sp"
+            android:layout_height="40sp"
+            android:layout_weight="4"
+            android:id="@+id/btnPWCheck"
+            android:text="비밀번호 확인"
+            android:layout_margin="5sp"
+            android:layout_gravity="center"
+            android:textColor="@android:color/tertiary_text_light"
+            android:background="@drawable/round_value_gray"
+            android:textSize="12sp"
+            android:onClick="mClick"
+            />
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/nickname"
+            android:hint="사용할 별명 입력"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    android:id="@+id/nickname"
+    android:hint="사용할 별명 입력"
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/btnRegister"
+    android:text="회원가입"
+    android:textColor="@android:color/tertiary_text_light"
+    android:background="@drawable/round_value"
+    android:textSize="24sp"
+    android:onClick="mClick"
+    />
+</LinearLayout>
