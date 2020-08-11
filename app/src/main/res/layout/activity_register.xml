@@ -37,6 +37,7 @@
             android:layout_height="50dp"
             android:id="@+id/email"
             android:hint="Email"
+            android:inputType="textEmailAddress"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -96,8 +97,6 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    android:id="@+id/nickname"
-    android:hint="사용할 별명 입력"
     <Button
     android:layout_width="match_parent"
     android:layout_height="50dp"

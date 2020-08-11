@@ -148,6 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                             intent.putExtra("Email",userEmail);
                             intent.putExtra("Password",userPW);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
                         } else{

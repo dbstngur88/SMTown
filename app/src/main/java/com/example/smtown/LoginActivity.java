@@ -55,6 +55,10 @@ public class LoginActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(strEmail) != true && TextUtils.isEmpty(strPW) != true) {
             Toast.makeText(LoginActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
         }
+        String getResetData = intent.getStringExtra("resetPW");
+        if(getResetData != null){
+            Toast.makeText(LoginActivity.this, "비밀번호 재설정 이메일 전송을 완료했습니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void loginUser(String Email, String Password){
@@ -100,20 +104,10 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btnFindPW :
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent = new Intent(LoginActivity.this, FindInfoActivity.class);
                 startActivity(intent);
                 break;
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==1 && resultCode == RESULT_OK){
-            data = getIntent();
-            txtEmail.setText(data.getStringExtra("Email"));
-            txtPW.setText(data.getStringExtra("Password"));
-            Toast.makeText(LoginActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 }

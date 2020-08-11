@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FindInfoActivity"
+    android:orientation="vertical"
+    android:background="#4F71E9F4"
+    android:padding="20sp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="비밀번호 재설정"
+        android:layout_margin="20sp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="48sp"
+        />
+
+    <ImageView
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:background="@drawable/login"
+        android:layout_gravity="center"
+        android:layout_margin="30sp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/email"
+            android:inputType="textEmailAddress"
+            android:hint="가입한 Email 입력"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/btnChangePW"
+        android:text="비밀번호 재설정 이메일 전송"
+        android:textColor="@android:color/tertiary_text_light"
+        android:background="@drawable/round_value"
+        android:textSize="24sp"
+        android:onClick="mClick"
+        />
+</LinearLayout>
