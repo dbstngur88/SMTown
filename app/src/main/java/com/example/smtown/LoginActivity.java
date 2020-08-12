@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         if(currentUser != null){
             intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.putExtra("autoLogin", "autoLogin");
             startActivity(intent);
             finish();
         }
