@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -65,8 +66,6 @@ public class ChatActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 fStoreNickname = (String) document.get("nickname");
-                                System.out.println(fStoreNickname+"--------------테스트--------------------");
-
                             }
                         }
                     }
@@ -138,7 +137,37 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+        edtContent.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            String strContent=edtContent.getText().toString();
+                            if(strContent.equals("")){
+                                Toast.makeText(ChatActivity.this,
+                                        "내용을 입력하세요!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Chat chat=new Chat();
+                                chat.setNickName(fStoreNickname);
+                                chat.setContent(strContent);
+                                SimpleDateFormat sdf=new SimpleDateFormat(
+                                        "yyyy-MM-dd HH:mm:ss");
+                                String strDate=sdf.format(new Date());
+                                chat.setWdate(strDate);
 
+                                myRef=database.getReference("Rating_" + placeName).child(strDate);
+                                myRef.setValue(chat);
+                                edtContent.setText("");
+                            }
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
 
     }
 }

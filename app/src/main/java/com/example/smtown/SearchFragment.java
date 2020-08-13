@@ -63,7 +63,8 @@ public class SearchFragment extends Fragment {
                 if (!is_end){
                 page = page + 1;
                 new KakaoThread().execute();
-            }else {
+                Toast.makeText(getActivity(),"검색수:" + total + "/ 페이지:" + page, Toast.LENGTH_SHORT).show();
+                }else {
                     Toast.makeText(getActivity(),"마지막페이지입니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -117,8 +118,6 @@ public class SearchFragment extends Fragment {
             LocalParser(s);
             ad.notifyDataSetChanged();
             listSearch.scrollToPosition(array.size()-1);
-            Toast.makeText(getActivity(),"검색수:" + total + "/ 페이지:" + page, Toast.LENGTH_SHORT).show();
-
         }
     }
 
