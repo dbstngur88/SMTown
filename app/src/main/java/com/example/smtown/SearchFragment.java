@@ -1,10 +1,13 @@
 package com.example.smtown;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static android.Manifest.permission.CALL_PHONE;
 
 public class SearchFragment extends Fragment {
 
@@ -48,7 +54,7 @@ public class SearchFragment extends Fragment {
         listSearch = view.findViewById(R.id.listSearch);
         listSearch.setLayoutManager(new LinearLayoutManager(getActivity()));
         listSearch.setAdapter(ad);
-
+        array.clear();
         new KakaoThread().execute();
         ImageView btnMore = view.findViewById(R.id.btnmore);
         btnMore.setOnClickListener(new View.OnClickListener() {
@@ -155,13 +161,30 @@ public class SearchFragment extends Fragment {
             holder.category.setText(map.get("category_name"));
             holder.phone.setText(map.get("phone"));
             holder.place.setText(map.get("address_name"));
-            holder.local.setOnClickListener(new View.OnClickListener() {
+            holder.maps.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), MapsActivity.class);
                     intent.putExtra("x", Double.parseDouble(map.get("x")));     //경도
                     intent.putExtra("y", Double.parseDouble(map.get("y")));      //위도
                     intent.putExtra("place_name", map.get("place_name"));
+                    startActivity(intent);
+                }
+            });
+            holder.phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+map.get("phone")));
+                    if(ContextCompat.checkSelfPermission(getActivity(),CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
+                        startActivity(intent);
+                    } else requestPermissions(new String[]{CALL_PHONE}, 1);
+                }
+            });
+            holder.chat.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), ChatActivity.class);
+                    intent.putExtra("place_name",map.get("place_name"));
                     startActivity(intent);
                 }
             });
@@ -173,7 +196,7 @@ public class SearchFragment extends Fragment {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView local;
+            ImageView maps,chat;
             TextView title, category, phone, place;
 
             public ViewHolder(@NonNull View itemView) {
@@ -182,8 +205,8 @@ public class SearchFragment extends Fragment {
                 category = itemView.findViewById(R.id.category);
                 phone = itemView.findViewById(R.id.phone);
                 place = itemView.findViewById(R.id.place);
-                local = itemView.findViewById(R.id.image);
-
+                maps = itemView.findViewById(R.id.image);
+                chat = itemView.findViewById(R.id.chat);
             }
         }
     }

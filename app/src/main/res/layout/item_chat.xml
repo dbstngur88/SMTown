@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="15sp"
+    android:background="@drawable/ic_bubble"
+    android:layout_marginBottom="20sp"
+    >
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글쓴이"
+        android:textSize="10sp"
+        android:padding="5sp"
+        />
+    <TextView
+        android:id="@+id/txtContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글내용"
+        android:textSize="17sp"
+        android:padding="5sp"
+        android:layout_marginLeft="5sp"
+        />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글쓴 날짜시간"
+        android:textSize="8sp"
+        android:padding="5sp"
+        android:layout_marginLeft="15sp"
+        />
+
+</LinearLayout>
