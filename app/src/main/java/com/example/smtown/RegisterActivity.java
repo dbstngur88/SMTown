@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +64,43 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
 
         boolPW = false;
+        txtNickname.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            userEmail = txtEmail.getText().toString();
+                            userPW = txtPW.getText().toString();
+                            userPWCheck = txtPWCheck.getText().toString();
+                            userNickname = txtNickname.getText().toString();
+                            if (TextUtils.isEmpty(userEmail)) {
+                                Toast.makeText(RegisterActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (TextUtils.isEmpty(userPW)) {
+                                Toast.makeText(RegisterActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (userPW.length() < 8) {
+                                Toast.makeText(RegisterActivity.this, "비밀번호는 8자리 이상입니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (TextUtils.isEmpty(userPWCheck)) {
+                                Toast.makeText(RegisterActivity.this, "비밀번호 확인란을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (boolPW == false){
+                                Toast.makeText(RegisterActivity.this,"비밀번호 중복확인을 해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (TextUtils.isEmpty(userNickname)) {
+                                Toast.makeText(RegisterActivity.this, "별명을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (userEmail.indexOf('@') < 0) {
+                                Toast.makeText(RegisterActivity.this, "이메일 형식이 올바르지 않습니다. 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (boolPW == true){
+                                registerUser();
+                            }else {
+                                Toast.makeText(RegisterActivity.this, "알수 없는 오류", Toast.LENGTH_SHORT).show();
+                            }
+                                return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     public void mClick(View view) {
@@ -145,6 +183,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     Log.d(TAG, "successed. user Profile is created for" + userEmail);
                                 }
                             });
+                            fAuth.signOut();
                             Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                             intent.putExtra("Email",userEmail);
                             intent.putExtra("Password",userPW);

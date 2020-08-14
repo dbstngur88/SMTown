@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,6 +65,33 @@ public class LoginActivity extends AppCompatActivity {
         if(getResetData != null){
             Toast.makeText(LoginActivity.this, "로그아웃 성공", Toast.LENGTH_SHORT).show();
         }
+        txtPW.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_DPAD_CENTER:
+                        case KeyEvent.KEYCODE_ENTER:
+                            strEmail = txtEmail.getText().toString();
+                            strPW = txtPW.getText().toString();
+                            if (TextUtils.isEmpty(strEmail)) {
+                                Toast.makeText(LoginActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (TextUtils.isEmpty(strPW)) {
+                                Toast.makeText(LoginActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (strEmail.indexOf('@') < 0) {
+                                Toast.makeText(LoginActivity.this, "이메일 형식이 올바르지 않습니다. 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                            }else if (strPW.length() < 8) {
+                                Toast.makeText(LoginActivity.this, "비밀번호는 8자리 이상입니다. 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                            }else{
+                                loginUser(strEmail,strPW);
+                            }
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     public void loginUser(String Email, String Password){
@@ -91,14 +119,12 @@ public class LoginActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(strEmail)) {
                     Toast.makeText(LoginActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
-                }
-                if (TextUtils.isEmpty(strPW)) {
+                }else if (TextUtils.isEmpty(strPW)) {
                     Toast.makeText(LoginActivity.this, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
-                }
-                if (strEmail.indexOf('@') < 0) {
+                }else if (strEmail.indexOf('@') < 0) {
                     Toast.makeText(LoginActivity.this, "이메일 형식이 올바르지 않습니다. 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
-                } else if (strPW.length() < 8) {
+                }else if (strPW.length() < 8) {
                     Toast.makeText(LoginActivity.this, "비밀번호는 8자리 이상입니다. 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                 }else{
                     loginUser(strEmail,strPW);

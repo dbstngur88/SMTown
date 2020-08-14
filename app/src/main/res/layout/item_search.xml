@@ -8,6 +8,7 @@
     android:layout_margin="5sp"
     android:orientation="vertical"
     android:elevation="30sp"
+    android:id="@+id/itemBox"
     >
     <LinearLayout
         android:layout_width="50sp"

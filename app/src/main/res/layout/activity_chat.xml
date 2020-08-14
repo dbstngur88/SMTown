@@ -9,11 +9,22 @@
     android:orientation="vertical"
     android:padding="20sp"
     >
+    <TextView
+        android:id="@+id/restaurantName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="평점 : 이름"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:background="@drawable/round_value_gray"
+        android:layout_marginBottom="20sp"
+        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listChat"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="1"
+        android:background="@drawable/round_value_lightblue"
         />
     <RelativeLayout
         android:layout_width="match_parent"

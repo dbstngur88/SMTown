@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -137,6 +138,7 @@ public class SearchFragment extends Fragment {
                     map.put("address_name", obj.getString("address_name"));
                     map.put("x", obj.getString("x"));
                     map.put("y", obj.getString("y"));
+                    map.put("place_url",obj.getString("place_url"));
                     array.add(map);
                 }
         } catch (Exception e) {
@@ -160,6 +162,14 @@ public class SearchFragment extends Fragment {
             holder.category.setText(map.get("category_name"));
             holder.phone.setText(map.get("phone"));
             holder.place.setText(map.get("address_name"));
+            holder.itemBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(),WebActivity.class);
+                    intent.putExtra("place_url",map.get("place_url"));
+                    startActivity(intent);
+                }
+            });
             holder.maps.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -197,9 +207,11 @@ public class SearchFragment extends Fragment {
         public class ViewHolder extends RecyclerView.ViewHolder {
             ImageView maps,chat;
             TextView title, category, phone, place;
+            RelativeLayout itemBox;
 
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
+                itemBox = itemView.findViewById(R.id.itemBox);
                 title = itemView.findViewById(R.id.title);
                 category = itemView.findViewById(R.id.category);
                 phone = itemView.findViewById(R.id.phone);

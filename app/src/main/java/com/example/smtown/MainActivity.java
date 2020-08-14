@@ -2,6 +2,7 @@ package com.example.smtown;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -47,10 +48,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView signOut;
     Button btnSignout;
     TextView viewWeater;
-
+    ImageView  openDrawerView;
     LinearLayout drawerView;
     DrawerLayout drawerLayout;
     TextView drawerEmail, drawerIntroMsg;
+
+    Button drawerAppInfo;
 
     TabLayout tab;
     ViewPager pager;
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         signOut = findViewById(R.id.imgSignOut);
         viewWeater = findViewById(R.id.weather);
+        openDrawerView = findViewById(R.id.openDrawerView);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerView = findViewById(R.id.drawerView);
@@ -99,6 +103,13 @@ public class MainActivity extends AppCompatActivity {
         drawerEmail = drawerView.findViewById(R.id.email);
         drawerIntroMsg = drawerView.findViewById(R.id.introMsg);
         btnSignout = drawerView.findViewById(R.id.btnLogout);
+        drawerAppInfo = drawerView.findViewById(R.id.btnAppInfo);
+        drawerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawer(drawerView);
+            }
+        });
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +123,34 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
+            }
+        });
+        drawerAppInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder box = new AlertDialog.Builder(MainActivity.this);
+                box.setTitle("Application Info");
+                box.setMessage("개발자 : 윤수혁\n개발 기간 : 2020.08.10~2020.08.14\n구현방법" +
+                        "\n로그인,회원가입,비밀번호찾기 : FireBase 인증" +
+                        "\n별명 및 사용자 정보 저장 : FireBase FireStore\n좌측 바 : DrawerLayout" +
+                        "\n메인페이지 : ViewPager" +
+                        "\n배달, 식당 검색 : MySql + Web\n웹 검색 : KaKao API + WebView" +
+                        "\n지도 검색 : GoogleMaps\n상단 현재 위치 날씨 출력 : 크롤링&WebView" +
+                        "\n한줄평 기능 : FireBase RealTime DataBase\n그 외 수업시간에 배운 기능들 사용" +
+                        "\n\n\n\n모두 수고하셨습니다!!!");
+
+                box.setPositiveButton("닫기",null);
+                box.show();
+            }
+        });
+        viewWeater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,WebActivity.class);
+                intent.putExtra("place_url","https://search.naver.com/search.naver?sm=tab" +
+                        "_hty.top&where=nexearch&query=%EC%95%84%EC%82%B0+%EB%82%A0%EC%94%A8&oquery=" +
+                        "%EC%84%A0%EB%AC%B8%EB%8C%80%ED%95%99%EA%B5%90+%EB%82%A0%EC%94%A8&tqi=UzTg5sp0JXoss7RMyQKssssss8N-415718");
+                startActivity(intent);
             }
         });
         setUserInfo();
@@ -153,7 +192,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        openDrawerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(drawerView);
+            }
+        });
     }
 
     //로그인 되어있으면 currentUser 변수에 유저정보 할당. 아닌경우 login 페이지로 이동!

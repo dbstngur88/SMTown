@@ -15,4 +15,11 @@ public interface RemoteService {
     @GET("restaurantlistsch.jsp")
     Call<List<RestaurantVO>> schRestaurant(
             @Query("query") String query);
+
+    @GET("deliverlist.jsp")
+    Call<List<RestaurantVO>> listDeliver();
+
+    @GET("deliverlistsch.jsp")
+    Call<List<RestaurantVO>> schDeliver(
+            @Query("query") String query);
 }

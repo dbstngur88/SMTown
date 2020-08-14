@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="15sp"
+    android:padding="5sp"
     android:background="@drawable/ic_bubble"
-    android:layout_marginBottom="20sp"
+    android:layout_marginTop="5sp"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp"
     >
     <TextView
         android:id="@+id/txtEmail"
@@ -20,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="글내용"
-        android:textSize="17sp"
+        android:textSize="20sp"
         android:padding="5sp"
         android:layout_marginLeft="5sp"
         />
@@ -32,7 +34,7 @@
         android:text="글쓴 날짜시간"
         android:textSize="8sp"
         android:padding="5sp"
-        android:layout_marginLeft="15sp"
+        android:layout_marginLeft="10sp"
         />
 
 </LinearLayout>

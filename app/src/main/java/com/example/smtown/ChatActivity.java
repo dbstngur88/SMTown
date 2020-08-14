@@ -8,10 +8,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,10 +50,15 @@ public class ChatActivity extends AppCompatActivity {
     Intent intent;
     Spanned placeName;
     String fStoreNickname;
+    TextView restaurantName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        //액션바 안보이게 지정
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         FirebaseUser user= FirebaseAuth.getInstance().getCurrentUser();
         fStore = FirebaseFirestore.getInstance();
@@ -79,7 +86,8 @@ public class ChatActivity extends AppCompatActivity {
         intent = getIntent();
         placeName = Html.fromHtml(intent.getStringExtra("place_name"));
 
-        getSupportActionBar().setTitle("한줄 평 :" + placeName);
+        restaurantName = findViewById(R.id.restaurantName);
+        restaurantName.setText("식당 한줄평\n\n" + placeName);
 
         database=FirebaseDatabase.getInstance();
         myRef=database.getReference("Rating_"+placeName);

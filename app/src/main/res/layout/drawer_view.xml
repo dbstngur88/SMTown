@@ -33,16 +33,34 @@
         android:text="환영합니다."
         android:layout_gravity="center"
         />
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="로그아웃"
-        android:layout_marginTop="70sp"
-        android:background="@drawable/round_value_gray"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/btnAppInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="어플 정보"
+            android:layout_marginTop="40sp"
+            android:background="@drawable/round_value_gray"
+            android:layout_marginRight="40sp"
+            />
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="로그아웃"
+            android:layout_marginTop="40sp"
+            android:background="@drawable/round_value_gray"
+            />
 
-        />
+    </LinearLayout>
 
 
 </LinearLayout>
